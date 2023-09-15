@@ -6,9 +6,9 @@ import Login from "./pages/login";
 import Error404 from "./pages/404";
 import Unauthorized from "./pages/unauthorized";
 import AddProduct from "./pages/products/AddProduct";
-import PersistLogin from "./components/auth/persistLogin";
 import AccountInfo from "./pages/accountInfo";
 import Dashboard from "./pages/dashboard";
+import RequireAuth from "./components/auth/requireAuth";
 
 // Memoized Layout component for optimization
 const Layout = React.memo(() => {
@@ -35,7 +35,7 @@ const App = () => {
       element: <Unauthorized />,
     },
     {
-      element: <PersistLogin />, // This should wrap the layout that requires authentication
+      element: <RequireAuth />, // This should wrap the layout that requires authentication
       children: [
         {
           path: "/",

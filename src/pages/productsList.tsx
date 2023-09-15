@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { GridColDef } from "@mui/x-data-grid";
 import axios from "../api/axios";
-import useAuth from "../hooks/useAuth";
 import CustomTable from "../components/customTable/customTable";
 
 const columns: GridColDef[] = [

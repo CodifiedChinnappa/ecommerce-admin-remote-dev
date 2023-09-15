@@ -3,7 +3,6 @@ import { BiSolidBookOpen } from "react-icons/bi";
 
 import { FaBars, FaRegWindowClose } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import useLogout from "../../hooks/useLogout";
 
 const Header = () => {
   const Links = [
@@ -15,10 +14,8 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
-  const logout = useLogout();
 
   const signOut = async () => {
-    await logout();
     navigate("/login");
   };
 

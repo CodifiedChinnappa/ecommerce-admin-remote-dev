@@ -3,7 +3,6 @@ import { GridColDef } from "@mui/x-data-grid";
 import { CircularProgress } from "@mui/material";
 import axios from "../api/axios";
 import CustomTable from "../components/customTable/customTable";
-import useAuth from "../hooks/useAuth";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", flex: 1 },
@@ -43,7 +42,7 @@ const AllOrders = () => {
   const [ordersInfo, setOrdersInfo] = useState([]);
   const [loading, setLoading] = useState<Boolean>(true);
 
-  const { auth } = useAuth();
+  const  auth  = "tre";
 
   useEffect(() => {
     const fetchData = async () => {

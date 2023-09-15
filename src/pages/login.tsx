@@ -1,16 +1,13 @@
 import { useRef, useState, useEffect, FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { setCredentials } from "../features/auth/authSlice";
+import { useLoginMutation } from "../features/auth/authApiSlice";
 import "./index.scss";
-
-// import hooks
-import useAuth from "../hooks/useAuth";
-
-import axios from "../api/axios";
+import { useAppDispatch } from "../hooks/useReduxHooks";
 
 const Login = () => {
-  const { setAuth } = useAuth();
-
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
@@ -21,23 +18,23 @@ const Login = () => {
   const [password, setPwd] = useState<string>("");
   const [errMsg, setErrMsg] = useState("");
 
+  const [login, { isLoading }] = useLoginMutation();
+
   useEffect(() => {
     userRef?.current?.focus();
   }, []);
 
+  useEffect(() => {
+    setErrMsg("");
+  }, [username, password]);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(`/auth/login`, {
-        email: username,
-        password,
-      });
-      setAuth({
-        ...data,
-      });
+      const userData = await login({ username, password }).unwrap();
+      dispatch(setCredentials({ ...userData, username }));
       setUsername("");
       setPwd("");
-      localStorage.setItem("persist", JSON.stringify(true));
       navigate(from, { replace: true });
     } catch (err) {
       setErrMsg("username/password is incorrect");
@@ -45,7 +42,9 @@ const Login = () => {
     }
   };
 
-  return (
+  const content = isLoading ? (
+    <h1>Loading...</h1>
+  ) : (
     <section className="login">
       <div className="login__container">
         <div className="login__text-container">
@@ -114,6 +113,8 @@ const Login = () => {
       </div>
     </section>
   );
+
+  return content;
 };
 
 export default Login;

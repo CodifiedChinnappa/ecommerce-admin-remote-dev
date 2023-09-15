@@ -3,7 +3,6 @@ import { GiCargoShip, GiCardPickup, GiReceiveMoney } from "react-icons/gi";
 import { BiDetail, BiCartAlt } from "react-icons/bi";
 
 import axios from "../api/axios";
-import useAuth from "../hooks/useAuth";
 
 import "./index.scss";
 
@@ -20,7 +19,6 @@ const Dashboard = () => {
   //   total_sales: "0",
   // });
 
-  // const { auth } = useAuth();
 
   // useEffect(() => {
   //   const fetchData = async () => {

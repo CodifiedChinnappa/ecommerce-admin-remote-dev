@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import axios from "../api/axios";
-import useAuth from "../hooks/useAuth";
 
 interface Address {
   first_name: string;
@@ -146,7 +145,6 @@ const OrderDetails = () => {
   const [orderInfo, setOrderInfo] = useState<OrderData | null>(null);
   const [loadingState, setLoadingState] = useState<boolean>(false);
 
-  const { auth } = useAuth();
   const { orderid } = useParams();
 
   const handleOrderStatus = async () => {

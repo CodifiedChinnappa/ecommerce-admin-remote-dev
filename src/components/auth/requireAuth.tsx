@@ -1,20 +1,22 @@
 import React from "react";
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import { selectCurrentUser } from "../../features/auth/authSlice";
+import { useAppSelector } from "../../hooks/useReduxHooks";
 
 const RequireAuth: React.FC = () => {
-  const { auth } = useAuth();
+  const userDetails = useAppSelector(selectCurrentUser);
+  console.log(userDetails);
+
   const location = useLocation();
-  if (auth?.user?.role?.includes("seller")) {
+  if (userDetails?.role?.includes("admin")) {
     return <Outlet />;
   }
 
-  if (auth?.user?.role) {
+  if (userDetails?.role) {
     return <Navigate to="/unauthorized" state={{ from: location }} replace />;
   }
-  return <Outlet />;
 
-  // return <Navigate to="/login" state={{ from: location }} replace />;
+  return <Navigate to="/login" state={{ from: location }} replace />;
 };
 
 export default RequireAuth;
