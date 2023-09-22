@@ -13,12 +13,12 @@ type BrandBody = {
 };
 type UpdateBrand = {
   brandId: string;
-  body: any;
+  body: BrandBody;
 };
 // Define types for productId and body
 type ProductBody = {
   productId?: string;
-  body: any;
+  body: Product;
 };
 
 export const catalogApiSlice = apiSlice.injectEndpoints({

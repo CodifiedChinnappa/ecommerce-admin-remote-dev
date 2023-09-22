@@ -9,8 +9,8 @@ interface Options {
 
 interface DropdownSelectProps {
   options: Options[];
-  onChange: (option: any) => void;
-  selectedOption: Options | any;
+  onChange: (option: Options) => void;
+  selectedOption: Options;
 }
 
 const DropdownSelect: React.FC<DropdownSelectProps> = ({

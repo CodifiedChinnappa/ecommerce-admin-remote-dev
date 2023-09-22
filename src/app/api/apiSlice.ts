@@ -14,7 +14,7 @@ let BASE_URL = "http://localhost:3500/api/v1/";
 const development =
   !process.env.NODE_ENV || process.env.NODE_ENV === "development";
 
-if (development) BASE_URL = "https://remotedev-backend.onrender.com/api/v1/";
+if (!development) BASE_URL = "https://remotedev-backend.onrender.com/api/v1/";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,

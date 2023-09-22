@@ -5,6 +5,7 @@ import { useAppSelector } from "../../hooks/useReduxHooks";
 
 const RequireAuth: React.FC = () => {
   const userDetails = useAppSelector(selectCurrentUser);
+  console.log(userDetails);
 
   const location = useLocation();
   if (userDetails?.role?.includes("admin")) {
