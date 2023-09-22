@@ -1,16 +1,4 @@
-import { useEffect, useState } from "react";
-import { GiCargoShip, GiCardPickup, GiReceiveMoney } from "react-icons/gi";
-import { BiDetail, BiCartAlt } from "react-icons/bi";
-
-import axios from "../api/axios";
-
 import "./index.scss";
-
-interface DashboardInfo {
-  shipping_orders: number;
-  picking_orders: number;
-  total_sales: string;
-}
 
 const Dashboard = () => {
   // const [dashboardInfo, setDashboardInfo] = useState<DashboardInfo>({
@@ -18,7 +6,6 @@ const Dashboard = () => {
   //   picking_orders: 0,
   //   total_sales: "0",
   // });
-
 
   // useEffect(() => {
   //   const fetchData = async () => {

@@ -23,5 +23,5 @@ export const { setCredentials, logOut } = authSlice.actions;
 export default authSlice.reducer;
 
 // Define the return types explicitly for the selectors using RootState
-export const selectCurrentUser = (state: RootState) => state.auth.user;
-export const selectCurrentToken = (state: RootState) => state.auth.accessToken; 
+export const selectCurrentUser = (state: RootState) => state.persisted.auth.user;
+export const selectCurrentToken = (state: RootState) => state.persisted.auth.accessToken; 

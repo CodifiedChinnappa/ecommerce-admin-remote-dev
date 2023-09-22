@@ -1,15 +1,20 @@
 import { apiSlice } from "../../app/api/apiSlice";
+import { LoginCredentials } from "../../types";
+
+
 
 export const authApiSlice = apiSlice.injectEndpoints({
-  endpoints: builder => ({
+  endpoints: (builder) => ({
     login: builder.mutation({
-      query: credentials => ({
+      query: (credentials:LoginCredentials) => ({
         url: "/auth/login",
         method: "POST",
-        body: { ...credentials },
+        body: credentials,
       }),
     }),
   }),
 });
 
+// Export the login mutation hook with proper types
 export const { useLoginMutation } = authApiSlice;
+

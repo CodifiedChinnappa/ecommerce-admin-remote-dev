@@ -5,10 +5,12 @@ import Navbar from "./components/navbar";
 import Login from "./pages/login";
 import Error404 from "./pages/404";
 import Unauthorized from "./pages/unauthorized";
-import AddProduct from "./pages/products/AddProduct";
-import AccountInfo from "./pages/accountInfo";
+import BrandComponent from "./pages/catalog/brand";
 import Dashboard from "./pages/dashboard";
 import RequireAuth from "./components/auth/requireAuth";
+import CategoryComponent from "./pages/catalog/category";
+import ProductsList from "./pages/catalog/products/ProductsList";
+import AddProduct from "./pages/catalog/products/AddProduct";
 
 // Memoized Layout component for optimization
 const Layout = React.memo(() => {
@@ -46,12 +48,20 @@ const App = () => {
               element: <Dashboard />,
             },
             {
-              path: "add-product",
-              element: <AddProduct />,
+              path: "catalog/brands",
+              element: <BrandComponent />,
             },
             {
-              path: "account-info",
-              element: <AccountInfo />,
+              path: "catalog/category",
+              element: <CategoryComponent />,
+            },
+            {
+              path: "catalog/products",
+              element: <ProductsList />,
+            },
+            {
+              path: "catalog/products/add-new",
+              element: <AddProduct />,
             },
           ],
         },

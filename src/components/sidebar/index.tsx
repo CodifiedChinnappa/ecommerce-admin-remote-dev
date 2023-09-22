@@ -1,17 +1,60 @@
 import { useState } from "react";
+import { BsArrowLeftRight } from "react-icons/bs";
+import { BiSolidDashboard } from "react-icons/bi";
+import { Link, useLocation } from "react-router-dom";
 
-const Navbar = () => {
-  const [open, setOpen] = useState(true);
+const Sidebar = () => {
+  const [open, setOpen] = useState(false);
   const Menus = [
-    { title: "Dashboard", src: "Chart_fill" },
-    { title: "Inbox", src: "Chat" },
-    { title: "Accounts", src: "User", gap: true },
-    { title: "Schedule ", src: "Calendar" },
-    { title: "Search", src: "Search" },
-    { title: "Analytics", src: "Chart" },
-    { title: "Files ", src: "Folder", gap: true },
-    { title: "Setting", src: "Setting" },
+    {
+      title: "Dashboard",
+      icon: <BiSolidDashboard className="text-xl text-blue-700" />,
+      path: "/dashboard",
+    },
+    {
+      title: "Inbox",
+      icon: <BiSolidDashboard className="text-xl text-blue-700" />,
+      path: "/dashboard",
+    },
+    {
+      title: "Brand",
+      icon: <BiSolidDashboard className="text-xl text-blue-700" />,
+      path: "catalog/brands",
+      gap: true,
+    },
+    {
+      title: "Category",
+      icon: <BiSolidDashboard className="text-xl text-blue-700" />,
+      path: "/catalog/category",
+    },
+    {
+      title: "Products",
+      icon: <BiSolidDashboard className="text-xl text-blue-700" />,
+      path: "/catalog/products",
+    },
+    {
+      title: "Add Product",
+      icon: <BiSolidDashboard className="text-xl text-blue-700" />,
+      path: "/catalog/products/add-new",
+    },
+    {
+      title: "Files ",
+      icon: <BiSolidDashboard className="text-xl text-blue-700" />,
+      path: "/dashboard",
+      gap: true,
+    },
+    {
+      title: "Setting",
+      icon: <BiSolidDashboard className="text-xl text-blue-700" />,
+      path: "/dashboard",
+    },
   ];
+
+  const location = useLocation();
+
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
 
   return (
     <div
@@ -21,21 +64,21 @@ const Navbar = () => {
     >
       <button
         type="button"
-        className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
-    border-2 rounded-full ${!open && "rotate-180"}`}
+        className={`absolute cursor-pointer -right-3 top-9 w-7 bg-white border-dark-purple
+    border-2 rounded-full text-center ${!open && "rotate-180"}`}
         onClick={() => {
           return setOpen(!open);
         }}
         aria-label={open ? "Collapse sidebar" : "Expand sidebar"}
       >
-        <img src="./src/assets/control.png" alt="" />
+        <BsArrowLeftRight className="p-1" />
       </button>
       <div className="flex gap-x-4 items-center">
-        <img
+        {/* <img
           src="./src/assets/logo.png"
           className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"}`}
           alt="seller"
-        />
+        /> */}
         <h1
           className={`text-white origin-left font-medium text-xl duration-200 ${
             !open && "scale-0"
@@ -45,19 +88,29 @@ const Navbar = () => {
         </h1>
       </div>
       <ul className="pt-6">
-        {Menus.map((Menu, index) => {
+        {Menus.map((menu, index) => {
           return (
             <li
-              key={Menu.title}
+              key={menu.title}
               className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
-              ${Menu.gap ? "mt-9" : "mt-2"} ${
+              ${menu.gap ? "mt-9" : "mt-2"} ${
                 index === 0 && "bg-light-white"
               } `}
             >
-              <img src={`./src/assets/${Menu.src}.png`} alt="seller" />
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
-                {Menu.title}
-              </span>
+              <Link
+                to={menu.path}
+                className={`flex items-center justify-start flex-1 gap-3 ${
+                  isActive(menu.path) ? "active" : ""
+                }`}
+                key={menu.title}
+              >
+                {menu.icon}
+                <span
+                  className={`${!open && "hidden"} origin-left duration-200`}
+                >
+                  {menu.title}
+                </span>
+              </Link>
             </li>
           );
         })}
@@ -66,4 +119,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Sidebar;

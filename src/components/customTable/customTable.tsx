@@ -1,4 +1,5 @@
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+import Box from '@mui/material/Box';
 import "./customTable.scss";
 import { Link } from "react-router-dom";
 
@@ -8,18 +9,8 @@ type Props = {
   slug: string;
 };
 
-const DataTable = ({ columns, rows, slug }: Props) => {
-  // const queryClient = useQueryClient();
-  // // const mutation = useMutation({
-  // //   mutationFn: (id: number) => {
-  // //     return fetch(`http://localhost:8800/api/${props.slug}/${id}`, {
-  // //       method: "delete",
-  // //     });
-  // //   },
-  // //   onSuccess: ()=>{
-  // //     queryClient.invalidateQueries([`all${props.slug}`]);
-  // //   }
-  // // });
+const CustomTable = ({ columns, rows, slug }: Props) => {
+
 
   // const handleDelete = (id: number) => {
   //   //delete the item
@@ -34,7 +25,7 @@ const DataTable = ({ columns, rows, slug }: Props) => {
       return (
         <div className="action">
           <Link to={`/${slug}/${params.row.id}`}>
-            {/* <VisibilityIcon /> */}rtr
+            {/* <VisibilityIcon/> */}
           </Link>
           {/* <div className="delete" onClick={() => handleDelete(params.row.id)}>
             <img src="/delete.svg" alt="" />
@@ -46,6 +37,7 @@ const DataTable = ({ columns, rows, slug }: Props) => {
 
   return (
     <div className="dataTable">
+         <Box sx={{ height: 450, width: '100%' }}>
       <DataGrid
         className="dataGrid"
         rows={rows}
@@ -71,8 +63,9 @@ const DataTable = ({ columns, rows, slug }: Props) => {
         disableDensitySelector
         disableColumnSelector
       />
+    </Box>
     </div>
   );
 };
 
-export default DataTable;
+export default CustomTable;
